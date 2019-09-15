@@ -1,4 +1,8 @@
 <?php
-  mysql_connect('localhost','root','');
-  mysql_select_db('xeroxapp');
+$db_name = 'xeroxapp';
+$db_user = 'root';
+$db_pass = 'root';
+$db_host = 'localhost';
+  $con=mysqli_connect('localhost','root','root','xeroxapp');
+  //mysqli_select_db('xeroxapp');
  ?>

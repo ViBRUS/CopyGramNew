@@ -1,7 +1,11 @@
 <?php
-  include_once('connection.php');
+  $db_name = 'xeroxapp';
+$db_user = 'root';
+$db_pass = 'root';
+$db_host = 'localhost';
+   include_once('connection.php');
   $query="select * from printing_details";
-  $result=mysql_query($query);
+  $result=mysqli_query($con,$query);
 
  ?>
 
@@ -10,6 +14,7 @@
   <head>
     <meta charset="utf-8">
     <title></title>
+    <link rel="stylesheet" href="CSS/styles.css">
   </head>
   <body>
     <h1>Requests from students..</h1>
@@ -26,7 +31,7 @@
       </tr>
 
         <?php
-            while($rows=mysql_fetch_assoc($result))
+            while($rows=mysqli_fetch_assoc($result))
             {
         ?>
                 <tr>
@@ -36,12 +41,11 @@
                   <td><?php echo $rows['pages']; ?></td>
                   <td><?php echo $rows['sides']; ?></td>
                   <td><?php echo $rows['color']; ?></td>
+                  
                 </tr>
         <?php
       }
          ?>
-
-        <!--td><button type="button" onclick="alert('Hello world!')">Download</button></td-->
 
 
     </table>
