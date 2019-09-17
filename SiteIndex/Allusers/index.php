@@ -1,4 +1,4 @@
-<?php
+  <?php
   $db_name = 'xeroxapp';
 $db_user = 'root';
 $db_pass = 'root';
@@ -41,24 +41,36 @@ $db_host = 'localhost';
   							<tr class="table100-head">
                     <th>User's Email</th>
                     <th>No. of Documents</th>
+                    <th>Amount</th>
                     <th>Payment Status</th>
                 </tr>
               </thead>
       <?php
           while($rows=mysqli_fetch_assoc($result))
           {
-              $x=0;
       ?>
               <tr>
-                <?php $userr[$x]= $rows['user_email']; ?>
-                <td> <a href="user1.php"><?php echo $rows['user_email']; ?></a></td>
-                <td><?php echo $rows['NoOfDocs']; ?></td>
-                <td><?php echo $rows['Payment_Stat']; ?></td>
+              <script>
+                var x= <?php $rows['user_email']; ?>;
+              </script>
+                <td> <a id="redMail" onclick="newFun(x)"><?php echo $rows['user_email']; ?></a></td>
+                <td><?php echo $rows['noOfDocs']; ?></td>
+                <td><?php echo $rows['amount']; ?></td>
+                <td><?php echo $rows['Payment_Status']; ?></td>
               </tr>
       <?php
-        $x++;
     }
        ?>
 </table>
+
+<script>
+      var tempmail;
+    function newFun(tempmail)
+    {
+        <?php $userrmail = tempmail ?>
+        window.open("user1.php");
+    }
+
+</script>
   </body>
 </html>

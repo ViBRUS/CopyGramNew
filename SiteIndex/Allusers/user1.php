@@ -6,7 +6,7 @@ $db_host = 'localhost';
    include('connection.php');
    require('index.php');
 
-     $query1="select * from printing_details where user_email='$userid'";
+     $query1="select * from printing_details where user_email='$userrmail' ";
      $result1=mysqli_query($con,$query1);
 
 //  $query1="select * from printing_details";
@@ -167,7 +167,7 @@ $db_host = 'localhost';
 
     </table>
 
-    <script language="javascript">
+    <script>
                 function check(done) { /*function to check userid & password*/
                     /*the following code checkes whether the entered userid and password are matching*/
 
