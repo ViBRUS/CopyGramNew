@@ -1,0 +1,26 @@
+<td> <a id="umailid" onclick="newFun(x)"><?php echo $rows['user_email']; ?></a></td>
+
+<script>
+                var x= "<?php echo $rows['user_email'];?>";
+              </script>
+
+
+==> Cookie method
+<script type="text/javascript">
+document.cookie = "myJavascriptVar=" + id
+<?php
+   $userrmail= $_COOKIE['myJavascriptVar'];
+?>
+
+</script>
+
+
+==> To display file-location
+
+<td>
+                    <?php
+                      if($rows['user_email']=$rowsdoc['user_email'] and $rows['file_name']=$rowsdoc['filename']){
+                        echo $rowsdoc['filelocation']; }
+                    ?>
+
+                  </td>

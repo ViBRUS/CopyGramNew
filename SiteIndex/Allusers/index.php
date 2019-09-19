@@ -1,10 +1,10 @@
-  <?php
+<?php
   $db_name = 'xeroxapp';
 $db_user = 'root';
 $db_pass = 'root';
 $db_host = 'localhost';
    include_once('connection.php');
-  $query="select * from payment_stat ";
+  $query="select * from payment_details";
   $result=mysqli_query($con,$query);
  ?>
 
@@ -36,7 +36,7 @@ $db_host = 'localhost';
   		<div class="container-table100">
   			<div class="wrap-table100">
   				<div class="table100">
-  					<table>
+  					<table id="tableId">
   						<thead>
   							<tr class="table100-head">
                     <th>User's Email</th>
@@ -50,27 +50,45 @@ $db_host = 'localhost';
           {
       ?>
               <tr>
-              <script>
-                var x= <?php $rows['user_email']; ?>;
-              </script>
-                <td> <a id="redMail" onclick="newFun(x)"><?php echo $rows['user_email']; ?></a></td>
+                <td> <?php echo $rows['user_email']; ?></td>
                 <td><?php echo $rows['noOfDocs']; ?></td>
                 <td><?php echo $rows['amount']; ?></td>
                 <td><?php echo $rows['Payment_Status']; ?></td>
-              </tr>
+            </tr>
       <?php
     }
        ?>
 </table>
 
-<script>
-      var tempmail;
-    function newFun(tempmail)
+<script type="text/javascript">
+
+function addRowHandlers() {
+    var rows = document.getElementById("tableId").rows;
+    for (i = 0; i < rows.length; i++) {
+        rows[i].onclick = function(){ return function(){
+              var cell = this.cells[0];
+               var id = cell.innerHTML;
+               //alert("id:" + id);
+               window.open("user1.php");
+
+        };}(rows[i]);
+    }
+}
+window.onload = addRowHandlers();
+</script>
+
+
+<!--script>
+    function newFun(x)
     {
-        <?php $userrmail = tempmail ?>
-        window.open("user1.php");
+        var temp = document.getElementById("umailid").innerHTML;
+        <!?php  $userrmail = "<script>document.write(temp);</script>";?>
+        //window.location.href = "user1.php?w1=" + $userrmail;
+        alert(temp);
+        //window.open("user1.php");
     }
 
-</script>
+</script-->
+
   </body>
 </html>

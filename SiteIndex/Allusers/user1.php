@@ -1,3 +1,4 @@
+
 <?php
   $db_name = 'xeroxapp';
 $db_user = 'root';
@@ -6,12 +7,19 @@ $db_host = 'localhost';
    include('connection.php');
    require('index.php');
 
-     $query1="select * from printing_details where user_email='$userrmail' ";
-     $result1=mysqli_query($con,$query1);
+  // $userrmail="aus@hd.com";
+   //echo $userrmail;
+  //   $query1="select * from printing_details where user_email= '$userrmail' ";
+  //   $result1=mysqli_query($con,$query1);
 
-//  $query1="select * from printing_details";
-  //$result1=mysqli_query($con,$query1);
-  $querydoc="select * from documents";
+
+  $query1="select * from printing_details,payment_details where payment_details.Payment_Status='Done' and payment_details.user_email=printing_details.user_email";
+  $result1=mysqli_query($con,$query1);
+
+  //$query2="select * from printing_details where user_email= '$userrmail'";
+  //$result2=mysqli_query($con,$query1);
+
+  $querydoc="select * from documents,printing_details,payment_details where printing_details.user_email=documents.user_email and documents.user_email=payment_details.user_email and printing_details.file_name=documents.filename and payment_details.Payment_Status='Done'";
   $resultdoc=mysqli_query($con,$querydoc);
  ?>
 
@@ -131,13 +139,12 @@ $db_host = 'localhost';
             <table>
               <thead>
                 <tr class="table100-head">
-                  <!--th>User</th-->
+                  <th>User</th>
                   <th>File Name</th>
                   <th>Copies</th>
                   <th>pages</th>
                   <th>Sides</th>
                   <th>Color</th>
-                  <th>Amount</th>
                   <th>Download</th>
                   <th>Print Done</th>
                 </tr>
@@ -149,13 +156,13 @@ $db_host = 'localhost';
                 $rowsdoc=mysqli_fetch_assoc($resultdoc);
         ?>
                 <tr>
-                  <!--td><!?php echo $rows['user_email']; ?></td-->
+                  <td><?php echo $rows['user_email']; ?></td>
                   <td><?php echo $rows['file_name']; ?></td>
                   <td><?php echo $rows['copies']; ?></td>
                   <td><?php echo $rows['pages']; ?></td>
                   <td><?php echo $rows['sides']; ?></td>
                   <td><?php echo $rows['color']; ?></td>
-                  <td><?php echo $rows['amount']; ?></td>
+
                   <td><a  href="<?php echo $rowsdoc['filelocation']?>">  <button class="button1" style="vertical-align:middle"><span>Download</span></button></a></td>
 
                   <td><button class="button2" style="vertical-align:middle" onclick="check(this.done)"><span>Print Done</span></button></td>
