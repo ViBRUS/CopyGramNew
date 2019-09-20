@@ -147,6 +147,7 @@ $db_host = 'localhost';
                   <th>Color</th>
                   <th>Download</th>
                   <th>Print Done</th>
+                  <th></th>
                 </tr>
               </thead>
 
@@ -166,6 +167,7 @@ $db_host = 'localhost';
                   <td><a  href="<?php echo $rowsdoc['filelocation']?>">  <button class="button1" style="vertical-align:middle"><span>Download</span></button></a></td>
 
                   <td><button class="button2" style="vertical-align:middle" onclick="check(this.done)"><span>Print Done</span></button></td>
+                  
                 </tr>
         <?php
       }
